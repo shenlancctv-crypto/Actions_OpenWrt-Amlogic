@@ -1,0 +1,113 @@
+#
+# 斐讯 N1 盒子 OpenWrt 固件 —— 种子配置文件
+# 适用于 Lean's LEDE + GitHub Actions 云编译（quanjindeng 模板）
+# 
+# 使用方法：将此文件重命名为 .config-full，替换仓库中的原文件
+# GitHub Actions 编译前会自动执行 make defconfig 补齐依赖
+
+CONFIG_TARGET_armvirt=y
+CONFIG_TARGET_armvirt_64=y
+CONFIG_TARGET_armvirt_64_Default=y
+CONFIG_TARGET_ROOTFS_TARGZ=y
+# CONFIG_TARGET_ROOTFS_EXT4FS is not set
+# CONFIG_TARGET_ROOTFS_SQUASHFS is not set
+
+CONFIG_PACKAGE_luci=y
+CONFIG_PACKAGE_luci-base=y
+CONFIG_PACKAGE_luci-compat=y
+CONFIG_PACKAGE_luci-ssl=y
+CONFIG_PACKAGE_luci-ssl-openssl=y
+CONFIG_PACKAGE_luci-mod-admin-full=y
+CONFIG_PACKAGE_luci-i18n-base-zh-cn=y
+CONFIG_PACKAGE_luci-i18n-opkg-zh-cn=y
+CONFIG_PACKAGE_luci-i18n-firewall-zh-cn=y
+
+# 主题 Argon
+CONFIG_PACKAGE_luci-theme-argon=y
+CONFIG_PACKAGE_luci-app-argon-config=y
+# CONFIG_PACKAGE_luci-theme-bootstrap is not set
+
+# 科学上网 PassWall（轻量适合 N1 2GB RAM）
+CONFIG_PACKAGE_luci-app-passwall=y
+CONFIG_PACKAGE_luci-app-passwall_Iptables_Transparent_Proxy=y
+CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Libev_Client=y
+CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Libev_Server=y
+CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Rust_Client=y
+CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan_GO=y
+CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan_Plus=y
+CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray=y
+CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Hysteria=y
+
+# DNS 与广告过滤
+CONFIG_PACKAGE_luci-app-mosdns=y
+CONFIG_PACKAGE_luci-app-adguardhome=y
+
+# 动态 DNS
+CONFIG_PACKAGE_luci-app-ddns-go=y
+
+# 网络加速（刷机后视情况关闭 SFE 以免与 UA2F 冲突）
+CONFIG_PACKAGE_luci-app-turboacc=y
+
+# 晶晨宝盒（N1 专属管理）
+CONFIG_PACKAGE_luci-app-amlogic=y
+
+# 防检测插件（diy-part2.sh 会自动拉取 Zxilly/UA2F 和 EOYOHOO/rkp-ipid）
+CONFIG_PACKAGE_ua2f=y
+CONFIG_PACKAGE_luci-app-ua2f=y
+CONFIG_PACKAGE_kmod-rkp-ipid=y
+
+# 实用工具
+CONFIG_PACKAGE_luci-app-ttyd=y
+CONFIG_PACKAGE_luci-app-wol=y
+CONFIG_PACKAGE_luci-app-upnp=y
+CONFIG_PACKAGE_luci-app-filetransfer=y
+CONFIG_PACKAGE_luci-app-autoreboot=y
+CONFIG_PACKAGE_luci-app-nlbwmon=y
+
+# 内核模块
+CONFIG_PACKAGE_kmod-usb-core=y
+CONFIG_PACKAGE_kmod-usb-ohci=y
+CONFIG_PACKAGE_kmod-usb-storage=y
+CONFIG_PACKAGE_kmod-usb-storage-extras=y
+CONFIG_PACKAGE_kmod-usb2=y
+CONFIG_PACKAGE_kmod-usb3=y
+CONFIG_PACKAGE_kmod-fs-ext4=y
+CONFIG_PACKAGE_kmod-fs-ntfs=y
+CONFIG_PACKAGE_kmod-fs-vfat=y
+CONFIG_PACKAGE_kmod-fs-exfat=y
+CONFIG_PACKAGE_kmod-ipt-nat=y
+CONFIG_PACKAGE_kmod-ipt-nat6=y
+CONFIG_PACKAGE_kmod-nf-nathelper=y
+CONFIG_PACKAGE_kmod-nf-nathelper-extra=y
+CONFIG_PACKAGE_kmod-nft-core=y
+CONFIG_PACKAGE_kmod-nft-nat=y
+CONFIG_PACKAGE_kmod-tun=y
+CONFIG_PACKAGE_kmod-bridge=y
+
+# 网络工具
+CONFIG_PACKAGE_iptables-mod-extra=y
+CONFIG_PACKAGE_iptables-mod-tproxy=y
+CONFIG_PACKAGE_ip-full=y
+CONFIG_PACKAGE_tc-full=y
+CONFIG_PACKAGE_dnsmasq-full=y
+
+# 基础工具
+CONFIG_PACKAGE_bash=y
+CONFIG_PACKAGE_curl=y
+CONFIG_PACKAGE_htop=y
+CONFIG_PACKAGE_lsblk=y
+CONFIG_PACKAGE_block-mount=y
+CONFIG_PACKAGE_ca-certificates=y
+CONFIG_PACKAGE_unzip=y
+CONFIG_PACKAGE_coreutils=y
+CONFIG_PACKAGE_coreutils-nohup=y
+
+# === 以下为可选插件，取消注释即可启用 ===
+# CONFIG_PACKAGE_luci-app-ssr-plus=y
+# CONFIG_PACKAGE_luci-app-openclash=y
+# CONFIG_PACKAGE_luci-app-frpc=y
+# CONFIG_PACKAGE_luci-app-zerotier=y
+# CONFIG_PACKAGE_luci-app-samba4=y
+# CONFIG_PACKAGE_luci-app-vlmcsd=y
+# CONFIG_PACKAGE_luci-app-diskman=y
+# CONFIG_PACKAGE_iperf3=y
